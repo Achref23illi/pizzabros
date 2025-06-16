@@ -27,7 +27,7 @@ const MenuSection = () => {
       badges: ["popular"],
       rating: 4.9,
       prepTime: "12 min",
-      gradient: "from-red-500/30 to-green-500/30"
+      color: "orange"
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ const MenuSection = () => {
       badges: ["spicy"],
       rating: 4.8,
       prepTime: "14 min",
-      gradient: "from-red-600/40 to-orange-500/40"
+      color: "red"
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ const MenuSection = () => {
       badges: ["premium"],
       rating: 4.9,
       prepTime: "16 min",
-      gradient: "from-purple-600/30 to-amber-500/30"
+      color: "amber"
     },
     {
       id: 4,
@@ -63,7 +63,7 @@ const MenuSection = () => {
       badges: ["vegan", "healthy"],
       rating: 4.7,
       prepTime: "13 min",
-      gradient: "from-green-500/40 to-emerald-400/40"
+      color: "green"
     },
     {
       id: 5,
@@ -75,7 +75,7 @@ const MenuSection = () => {
       badges: ["popular"],
       rating: 4.8,
       prepTime: "15 min",
-      gradient: "from-orange-600/40 to-red-500/40"
+      color: "red"
     },
     {
       id: 6,
@@ -87,7 +87,7 @@ const MenuSection = () => {
       badges: ["premium", "seasonal"],
       rating: 4.9,
       prepTime: "14 min",
-      gradient: "from-pink-500/30 to-purple-500/30"
+      color: "purple"
     }
   ];
 
@@ -122,7 +122,7 @@ const MenuSection = () => {
       {/* 3D Background Elements */}
       <div className="absolute inset-0">
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5"
+                        className="absolute inset-0 bg-orange-500/5"
           style={{ y: y, rotateX: rotateX }}
         />
         <motion.div 
@@ -136,11 +136,7 @@ const MenuSection = () => {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className={`absolute w-64 h-64 rounded-full blur-3xl opacity-20 bg-gradient-to-br ${
-              i % 3 === 0 ? 'from-orange-500/30 to-red-500/30' :
-              i % 3 === 1 ? 'from-yellow-500/30 to-orange-500/30' :
-              'from-red-500/30 to-pink-500/30'
-            }`}
+            className="absolute w-64 h-64 rounded-full blur-3xl opacity-10 bg-orange-500"
             style={{
               left: `${10 + (i * 15)}%`,
               top: `${20 + (i % 2) * 40}%`,
@@ -184,7 +180,7 @@ const MenuSection = () => {
              }}
            >
              PIZZA
-             <span className="block text-gradient bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+             <span className="block text-orange-500">
                UNIVERSE
              </span>
            </motion.h2>
@@ -250,7 +246,7 @@ const MenuSection = () => {
               >
                 {/* Front of Card */}
                 <motion.div 
-                  className="absolute inset-0 h-full w-full bg-gradient-to-br from-zinc-900/80 to-black/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+                  className="absolute inset-0 h-full w-full bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
                   style={{ 
                     backfaceVisibility: 'hidden',
                     transformStyle: 'preserve-3d'
@@ -273,7 +269,7 @@ const MenuSection = () => {
                     
                     {/* Price Badge */}
                     <div className="absolute top-6 right-6">
-                      <span className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-lg font-bold rounded-full border border-white/20 shadow-xl">
+                      <span className="px-4 py-2 bg-orange-500 text-white text-lg font-bold rounded-full border border-white/20 shadow-xl">
                         {item.price}
                       </span>
                     </div>
@@ -297,14 +293,14 @@ const MenuSection = () => {
                 
                 {/* Back of Card */}
                 <motion.div 
-                  className="absolute inset-0 h-full w-full bg-gradient-to-br from-zinc-900/80 to-black/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+                  className="absolute inset-0 h-full w-full bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
                   style={{ 
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                     transformStyle: 'preserve-3d'
                   }}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30`} />
+                                      <div className={`absolute inset-0 bg-${item.color}-500/30`} />
                   
                   <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 text-center">
                     <h3 className="font-display text-3xl font-bold text-white mb-6">
@@ -312,7 +308,7 @@ const MenuSection = () => {
                     </h3>
                     
                     <div className="mb-6">
-                      <span className="text-4xl font-black text-gradient bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                      <span className="text-4xl font-black text-orange-500">
                         {item.price}
                       </span>
                     </div>

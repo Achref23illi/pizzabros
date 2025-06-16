@@ -1,89 +1,83 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Twitter } from 'lucide-react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   const contactInfo = [
     {
-      icon: MapPin,
-      title: "Localisation",
-      content: "123 Rue Saint-Catherine, Montreal, QC H3B 1A7"
+      title: "Adresse",
+      content: "123 Rue Saint-Laurent, Montréal, QC H2X 2T5"
     },
     {
-      icon: Phone,
       title: "Téléphone",
       content: "(514) 555-PIZZA"
     },
     {
-      icon: Mail,
-      title: "Courriel",
-      content: "hello@pizzabros.ca"
+      title: "Email",
+      content: "info@pizzabros.ca"
     },
     {
-      icon: Clock,
       title: "Heures",
-      content: "24h/24 - Toujours Ouvert"
+      content: "Lun-Dim: 11h00 - 23h00"
     }
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" }
+    { name: "Instagram", href: "#", label: "Instagram" },
+    { name: "Facebook", href: "#", label: "Facebook" },
+    { name: "Twitter", href: "#", label: "Twitter" }
   ];
 
   const quickLinks = [
     { name: "Menu", href: "#menu" },
     { name: "À Propos", href: "#about" },
     { name: "Contact", href: "#contact" },
-    { name: "Carrières", href: "#" },
-    { name: "Traiteur", href: "#" }
+    { name: "Carrières", href: "#careers" }
+  ];
+
+  const legalLinks = [
+    { name: "Politique de Confidentialité", href: "#privacy" },
+    { name: "Conditions d'Utilisation", href: "#terms" },
+    { name: "Mentions Légales", href: "#legal" }
   ];
 
   return (
-    <footer className="bg-black border-t border-zinc-800 relative">
-      <div className="absolute inset-0 grid-pattern-sm opacity-5" />
-      
-      <div className="container mx-auto px-6 py-16 relative">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-zinc-950 border-t border-white/10">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-display text-xl font-bold">PB</span>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Pizza Bros Logo" 
+                className="h-12 w-auto object-contain"
+              />
               <div>
-                <h3 className="font-display text-xl font-bold text-white">Pizza Bros</h3>
-                <p className="text-orange-400 text-sm font-body">Montreal</p>
+                <h3 className="text-xl font-display font-bold text-white">Pizza Bros</h3>
+                <p className="text-xs text-gray-400">Montréal</p>
               </div>
             </div>
-            
-            <p className="text-gray-400 font-body leading-relaxed">
-              La destination pizza urbaine de choix de Montréal. Ingrédients authentiques, saveurs innovantes et l'esprit de la ville dans chaque bouchée.
+            <p className="text-gray-400 text-sm">
+              La meilleure pizza artisanale de Montréal, préparée avec passion et des ingrédients frais.
             </p>
-
+            
             {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
+            <div className="flex space-x-4 pt-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
                   href={social.href}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 bg-zinc-900 hover:bg-orange-500 text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300"
                   aria-label={social.label}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-all duration-300"
                 >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
+                  <span className="text-white text-xs font-medium">{social.name[0]}</span>
+                </a>
               ))}
             </div>
           </motion.div>
@@ -94,19 +88,41 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <h4 className="font-heading text-lg font-semibold text-white">Liens Rapides</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <motion.a
+            <h4 className="text-white font-semibold text-lg">Liens Rapides</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <a
                     href={link.href}
-                    whileHover={{ x: 5 }}
-                    className="text-gray-400 hover:text-orange-400 font-body transition-colors duration-300"
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
                   >
                     {link.name}
-                  </motion.a>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Legal Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <h4 className="text-white font-semibold text-lg">Légal</h4>
+            <ul className="space-y-2">
+              {legalLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -116,20 +132,17 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="space-y-6 lg:col-span-2"
+            className="space-y-4"
           >
-            <h4 className="font-heading text-lg font-semibold text-white">Informations de Contact</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <info.icon className="w-4 h-4 text-orange-400" />
-                  </div>
+            <h4 className="text-white font-semibold text-lg">Contact</h4>
+            <div className="space-y-3">
+              {contactInfo.map((info) => (
+                <div key={info.title} className="flex items-start space-x-3">
                   <div>
-                    <h5 className="font-body font-medium text-white text-sm mb-1">{info.title}</h5>
-                    <p className="text-gray-400 text-sm font-body">{info.content}</p>
+                    <p className="text-xs text-orange-400 font-medium">{info.title}</p>
+                    <p className="text-gray-400 text-sm">{info.content}</p>
                   </div>
                 </div>
               ))}
@@ -137,64 +150,30 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Newsletter Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="border-t border-zinc-800 pt-12 mb-12"
-        >
-          <div className="max-w-md">
-            <h4 className="font-heading text-lg font-semibold text-white mb-4">Restez Informé</h4>
-            <p className="text-gray-400 font-body mb-6">Recevez les dernières nouvelles, offres spéciales et nouveaux éléments du menu dans votre boîte de réception.</p>
-            
-            <div className="flex space-x-3">
-              <input
-                type="email"
-                placeholder="Entrez votre courriel"
-                className="flex-1 px-4 py-3 bg-zinc-900 border border-zinc-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors duration-300"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary px-6"
-              >
-                S'abonner
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+          className="mt-12 pt-8 border-t border-white/10"
         >
-          <p className="text-gray-400 text-sm font-body">
-            © {currentYear} Pizza Bros Montréal. Tous droits réservés.
-          </p>
-          
-          <div className="flex space-x-6 text-sm">
-            <motion.a
-              href="#"
-              whileHover={{ color: "#ff6b35" }}
-              className="text-gray-400 hover:text-orange-400 font-body transition-colors duration-300"
-            >
-              Politique de Confidentialité
-            </motion.a>
-            <motion.a
-              href="#"
-              whileHover={{ color: "#ff6b35" }}
-              className="text-gray-400 hover:text-orange-400 font-body transition-colors duration-300"
-            >
-              Conditions d'Utilisation
-            </motion.a>
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-gray-400 text-sm">
+              © 2024 Pizza Bros Montréal. Tous droits réservés.
+            </p>
+            <p className="text-gray-400 text-sm">
+              Fait avec ❤️ à Montréal
+            </p>
           </div>
         </motion.div>
+      </div>
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px)`
+        }} />
       </div>
     </footer>
   );
