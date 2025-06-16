@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection';
 import Menu3D from './components/Menu3D';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
+import FloatingSocial from './components/FloatingSocial';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <AboutSection />
       </main>
       <Footer />
+      <FloatingSocial />
     </div>
   );
 }
